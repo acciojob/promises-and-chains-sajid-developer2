@@ -8,8 +8,18 @@
 <body>
 
   <form id="form">
-    <input type="number" id="age" placeholder="Enter Age" />
-    <input type="text" id="name" placeholder="Enter Name" />
+    <input
+      type="number"
+      id="age"
+      placeholder="Enter Age"
+    />
+
+    <input
+      type="text"
+      id="name"
+      placeholder="Enter Name"
+    />
+
     <button type="submit" id="btn">Submit</button>
   </form>
 
@@ -22,13 +32,15 @@
       const age = document.getElementById("age").value.trim();
       const name = document.getElementById("name").value.trim();
 
+      // Validation
       if (age === "" || name === "") {
         alert("Please enter valid details.");
         return;
       }
 
-      const promise = new Promise((resolve, reject) => {
-        setTimeout(() => {
+      // Promise
+      const checkAge = new Promise(function (resolve, reject) {
+        setTimeout(function () {
           if (Number(age) > 18) {
             resolve(`Welcome, ${name}. You can vote.`);
           } else {
@@ -37,11 +49,11 @@
         }, 4000);
       });
 
-      promise
-        .then((message) => {
+      checkAge
+        .then(function (message) {
           alert(message);
         })
-        .catch((message) => {
+        .catch(function (message) {
           alert(message);
         });
     });
