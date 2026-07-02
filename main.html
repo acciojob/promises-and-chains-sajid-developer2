@@ -1,65 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Promises and Chains</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Promises and Chains</title>
 </head>
 <body>
 
-    <form id="form">
-        <input
-            type="number"
-            id="age"
-            placeholder="Enter your age"
-        />
+  <form id="form">
+    <input type="number" id="age" placeholder="Enter Age" />
+    <input type="text" id="name" placeholder="Enter Name" />
+    <button type="submit" id="btn">Submit</button>
+  </form>
 
-        <input
-            type="text"
-            id="name"
-            placeholder="Enter your name"
-        />
+  <script>
+    const form = document.getElementById("form");
 
-        <button type="submit" id="btn">
-            Submit
-        </button>
-    </form>
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    <script>
-        const form = document.getElementById("form");
+      const age = document.getElementById("age").value.trim();
+      const name = document.getElementById("name").value.trim();
 
-        form.addEventListener("submit", function (e) {
-            e.preventDefault();
+      if (age === "" || name === "") {
+        alert("Please enter valid details.");
+        return;
+      }
 
-            const age = document.getElementById("age").value.trim();
-            const name = document.getElementById("name").value.trim();
+      const promise = new Promise((resolve, reject) => {
+        setTimeout(() => {
+          if (Number(age) > 18) {
+            resolve(`Welcome, ${name}. You can vote.`);
+          } else {
+            reject(`Oh sorry ${name}. You aren't old enough.`);
+          }
+        }, 4000);
+      });
 
-            // Validation
-            if (age === "" || name === "") {
-                alert("Please enter valid details.");
-                return;
-            }
-
-            // Promise
-            const votingPromise = new Promise(function (resolve, reject) {
-                setTimeout(function () {
-                    if (Number(age) > 18) {
-                        resolve(`Welcome, ${name}. You can vote.`);
-                    } else {
-                        reject(`Oh sorry ${name}. You aren't old enough.`);
-                    }
-                }, 4000);
-            });
-
-            votingPromise
-                .then(function (message) {
-                    alert(message);
-                })
-                .catch(function (message) {
-                    alert(message);
-                });
+      promise
+        .then((message) => {
+          alert(message);
+        })
+        .catch((message) => {
+          alert(message);
         });
-    </script>
+    });
+  </script>
 
 </body>
 </html>
