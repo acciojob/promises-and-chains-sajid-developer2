@@ -11,53 +11,18 @@
     <input
       type="number"
       id="age"
-      placeholder="Enter Age"
+      placeholder="Enter your age"
     />
 
     <input
       type="text"
       id="name"
-      placeholder="Enter Name"
+      placeholder="Enter your name"
     />
 
     <button type="submit" id="btn">Submit</button>
   </form>
 
-  <script>
-    const form = document.getElementById("form");
-
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      const age = document.getElementById("age").value.trim();
-      const name = document.getElementById("name").value.trim();
-
-      // Validation
-      if (age === "" || name === "") {
-        alert("Please enter valid details.");
-        return;
-      }
-
-      // Promise
-      const checkAge = new Promise(function (resolve, reject) {
-        setTimeout(function () {
-          if (Number(age) > 18) {
-            resolve(`Welcome, ${name}. You can vote.`);
-          } else {
-            reject(`Oh sorry ${name}. You aren't old enough.`);
-          }
-        }, 4000);
-      });
-
-      checkAge
-        .then(function (message) {
-          alert(message);
-        })
-        .catch(function (message) {
-          alert(message);
-        });
-    });
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
